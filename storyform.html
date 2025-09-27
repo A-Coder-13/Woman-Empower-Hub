@@ -1,0 +1,211 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Women Empower — Submit Your Story</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="styling.css">
+
+    <style>
+        /* :root{
+            --lavender:#f1e9f8;
+            --blush:#fde7f1;
+            --deep:#7b4397;
+            --gold:#ffcc70;
+            --muted:#6b6b6b;
+            --soft-purple: #D6A4E6;
+            --soft-pink: #FADADD;
+            --hero-bg: linear-gradient(135deg, var(--soft-purple), var(--soft-pink));
+        }
+        .grad-text{
+            background: linear-gradient(90deg, var(--deep), #9b59b6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .hero-gradient{
+            background: var(--hero-bg);
+        }
+        .btn-gold{background: var(--gold); color:#3a2f22; font-weight:600; border-radius: 40px;}
+        .bg-lavender{background: var(--lavender);}
+        .bg-blush{background: var(--blush);}
+        .form-control, .form-select {
+            border-radius: 10px;
+        }
+        .img-fluid {
+            max-width: 100%;
+            height: auto;
+        } */
+        /* Glassmorphism Effect */
+        /* .glass-card {
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 15px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        } */
+        /* .glass-card .form-control,
+        .glass-card .form-select {
+            background: rgba(255, 255, 255, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            color: var(--deep);
+        }
+        .glass-card .form-control::placeholder {
+            color: rgba(123, 67, 151, 0.7);
+        }
+        .glass-card .form-label {
+            color: var(--deep);
+            font-weight: 500;
+        } */
+        /* .registration-bg {
+            background: var(--hero-bg);
+        }
+        .hero-gradient {
+            background: linear-gradient(135deg, var(--lavender) 0%, var(--blush) 55%, #fff 100%);
+        } */
+        /* No need for vertical-img or float-up-down keyframes as image is removed */
+ 
+    </style>
+</head>
+<body class="registration-bg">
+
+    <nav class="navbar navbar-expand-lg bg-white shadow-sm py-2 sticky-top">
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center" href="index.html">
+                <div class="rounded-3 d-flex align-items-center justify-content-center me-2"
+                    style="width:40px;height:40px;background:linear-gradient(135deg,#D6A4E6,#FADADD);color:#fff;font-weight:700">
+                    WE
+                </div>
+                <div class="pt-2">
+                    <div class="fw-bold">Women Empower Hub</div>
+                    <small class="text-muted" style="font-size:12px; position: relative; top: -10px;">Learn • Promote • Grow</small>
+                </div>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="mainNav">
+                <ul class="navbar-nav ms-auto align-items-lg-center">
+                    <li class="nav-item"><a class="nav-link" href="learn.html">Learn</a></li>
+                    <li class="nav-item"><a class="nav-link" href="promote.html">Promote</a></li>
+                    <li class="nav-item"><a class="nav-link" href="mentors.html">Mentors</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="story.html">Stories</a></li>
+                    <li class="nav-item ms-lg-3">
+                        <a class="btn text-white px-3" style="background:linear-gradient(90deg,#D6A4E6,#FADADD)" href="#">
+                            Join Now
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <header class="text-center py-5 hero-gradient">
+        <div class="container" data-aos="fade-up">
+            <h1 class="fw-bold display-5 grad-text">Share Your Success Story.</h1>
+            <p class="lead mx-auto" style="max-width:700px">
+                Inspire others by sharing how Women Empower Hub helped you on your journey. We can't wait to hear your story!
+            </p>
+        </div>
+    </header>
+
+    <section class="container py-5">
+        <div class="row justify-content-center"> <div class="col-lg-7 col-md-9"> <div class="card p-4 glass-card" data-aos="fade-up"> <div class="card-body">
+                        <h4 class="card-title fw-bold text-center mb-4 text-dark">Your Story Details</h4>
+                        <form action="process_story.php" method="post" enctype="multipart/form-data">
+                            <div class="mb-3">
+                                <label for="fullName" class="form-label">Full Name</label>
+                                <input type="text" class="form-control" id="fullName" name="fullName" placeholder="Enter your full name" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="businessName" class="form-label">Business/Project Name</label>
+                                <input type="text" class="form-control" id="businessName" name="businessName" placeholder="e.g., The Dessert Crate" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="headline" class="form-label">Story Headline</label>
+                                <input type="text" class="form-control" id="headline" name="headline" placeholder="e.g., From Home Baker to Thriving Business Owner" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="tagline" class="form-label">Short Tagline/Quote</label>
+                                <input type="text" class="form-control" id="tagline" name="tagline" placeholder="A short, inspiring quote about your experience" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="story" class="form-label">Your Full Story</label>
+                                <textarea class="form-control" id="story" name="story" rows="8" placeholder="Tell us your journey in detail: what were your challenges, how did the platform help, and what is your success today?" required></textarea>
+                            </div>
+                            <div class="mb-3">
+                                <label for="photo" class="form-label">Upload a Photo</label>
+                                <input class="form-control" type="file" id="photo" name="photo" accept="image/*">
+                                <div class="form-text">We'd love to feature a high-quality photo of you or your business.</div>
+                            </div>
+                            <div class="d-grid mt-4">
+                                <button type="submit" class="btn btn-gold py-2">Submit Story</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+   <!-- FOOTER -->
+<footer class="text-light py-5" style="background-color: #d8a8eba2;">
+    <div class="container">
+      <div class="row g-4">
+        
+        <!-- Column 1: Brand & Description -->
+        <div class="col-md-4">
+          <div class="d-flex align-items-center mb-2">
+            <div class="rounded-3 d-flex align-items-center justify-content-center me-2"
+                 style="width:40px;height:40px;background:linear-gradient(135deg,#D6A4E6,#FADADD);color:#fff;font-weight:700">
+              WE
+            </div>
+            <h5 class="fw-bold mb-0">Women Empower Hub</h5>
+          </div>
+          <p class="small text-muted mt-2">
+            A community dedicated to helping women learn, promote, and grow their businesses.
+          </p>
+          <div class="social-icons mt-3">
+            <a href="#" class="text-white me-3"><i class="bi bi-facebook fs-4"></i></a>
+            <a href="#" class="text-white me-3"><i class="bi bi-instagram fs-4"></i></a>
+            <a href="#" class="text-white me-3"><i class="bi bi-linkedin fs-4"></i></a>
+          </div>
+        </div>
+        
+        <!-- Column 2: Quick Links -->
+        <div class="col-md-4">
+          <h6 class="fw-bold mb-3 text-gold">Quick Links</h6>
+          <ul class="list-unstyled small">
+            <li class="mb-2"><a href="learn.html" class="text-muted text-decoration-none">Learn</a></li>
+            <li class="mb-2"><a href="promote.html" class="text-muted text-decoration-none">Promote</a></li>
+            <li class="mb-2"><a href="mentors.html" class="text-muted text-decoration-none">Mentors</a></li>
+            <li class="mb-2"><a href="stories.html" class="text-muted text-decoration-none">Stories</a></li>
+          </ul>
+        </div>
+        
+        <!-- Column 3: Contact & Legal -->
+        <div class="col-md-4">
+          <h6 class="fw-bold mb-3 text-gold">Get in Touch</h6>
+          <ul class="list-unstyled small">
+            <li class="text-muted mb-2">Email: <a href="mailto:info@womenempower.com" class="text-muted text-decoration-none">info@womenempower.com</a></li>
+            <li class="text-muted mb-2">Phone: +92 123 4567890</li>
+            <li class="text-muted">Location: Lahore, Pakistan</li>
+          </ul>
+          <div class="small text-muted mt-4 border-top pt-3">
+            &copy; 2025 Women Empower. All Rights Reserved.<br>
+            <a href="#" class="text-muted text-decoration-none">Privacy Policy</a> | <a href="#" class="text-muted text-decoration-none">Terms of Service</a>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+  </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>AOS.init({ duration: 700, once: true });</script>
+</body>
+</html>

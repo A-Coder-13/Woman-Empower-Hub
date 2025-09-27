@@ -1,0 +1,208 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Women Empower — Register Your Brand</title>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+  <style>
+    :root{
+      --lavender:#f1e9f8;
+      --blush:#fde7f1;
+      --deep:#7b4397;
+      --gold:#ffcc70;
+      --muted:#6b6b6b;
+      --soft-purple: #D6A4E6;
+      --soft-pink: #FADADD;
+      --hero-bg: linear-gradient(135deg, var(--soft-purple), var(--soft-pink));
+    }
+    .grad-text{
+      background: linear-gradient(90deg,var(--deep), #9b59b6);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .hero-gradient{
+      background: var(--hero-bg);
+    }
+    .btn-gold{background: var(--gold); color:#3a2f22; font-weight:600; border-radius: 40px;}
+    .bg-lavender{background: var(--lavender);}
+    .bg-blush{background: var(--blush);}
+    .form-control, .form-select {
+      border-radius: 10px;
+    }
+    .img-fluid {
+      max-width: 100%;
+      height: auto;
+    }
+    /* Glassmorphism Effect */
+    .glass-card {
+      background: rgba(255, 255, 255, 0.2);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      border-radius: 15px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+    .glass-card .form-control,
+    .glass-card .form-select {
+      background: rgba(255, 255, 255, 0.4);
+      border: 1px solid rgba(255, 255, 255, 0.4);
+      color: var(--deep);
+    }
+    .glass-card .form-control::placeholder {
+      color: rgba(123, 67, 151, 0.7);
+    }
+    .glass-card .form-label {
+      color: var(--deep);
+      font-weight: 500;
+    }
+    .registration-bg {
+      background: var(--hero-bg);
+    }
+    .hero-gradient {
+        background: linear-gradient(135deg, var(--lavender) 0%, var(--blush) 55%, #fff 100%);
+    }
+    /* Up and down animation */
+    @keyframes float-up-down {
+      0% { transform: translateY(0px); }
+      50% { transform: translateY(-15px); }
+      100% { transform: translateY(0px); }
+    }
+    /* Adjusted image height and applied animation */
+    .vertical-img {
+      height: 800px;
+      width: 1000px;
+      object-fit: cover;
+      animation: float-up-down 4s ease-in-out infinite alternate;
+    }
+  </style>
+</head>
+<body class="registration-bg">
+
+<nav class="navbar navbar-expand-lg bg-white shadow-sm py-2 sticky-top">
+  <div class="container">
+    <a class="navbar-brand d-flex align-items-center" href="index.html">
+      <div class="rounded-3 d-flex align-items-center justify-content-center me-2"
+           style="width:40px;height:40px;background:linear-gradient(135deg,#D6A4E6,#FADADD);color:#fff;font-weight:700">
+        WE
+      </div>
+      <div class="pt-2">
+        <div class="fw-bold">Women Empower Hub</div>
+        <small class="text-muted" style="font-size:12px; position: relative; top: -10px;">Learn • Promote • Grow</small>
+      </div>
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="mainNav">
+      <ul class="navbar-nav ms-auto align-items-lg-center">
+        <li class="nav-item"><a class="nav-link" href="learn.html">Learn</a></li>
+        <li class="nav-item"><a class="nav-link active" href="promote.html">Promote</a></li>
+        <li class="nav-item"><a class="nav-link" href="mentors.html">Mentors</a></li>
+        <li class="nav-item"><a class="nav-link" href="stories.html">Stories</a></li>
+        <li class="nav-item ms-lg-3">
+          <a class="btn text-white px-3" style="background:linear-gradient(90deg,#D6A4E6,#FADADD)" href="#">
+            Join Now
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<header class="text-center py-5 hero-gradient">
+  <div class="container" data-aos="fade-up">
+    <h1 class="fw-bold display-5 grad-text">Register Your Brand.</h1>
+    <p class="lead mx-auto" style="max-width:700px">
+      Fill out the form below to get your business listed in our directory.
+    </p>
+  </div>
+</header>
+
+<section class="container py-5">
+  <div class="row g-5 align-items-center justify-content-center">
+    <div class="col-md-5 d-none d-md-block">
+      <img src="assets/img/promot.jpeg"
+           alt="Vertical image of women working" class="img-fluid rounded-4 shadow-lg vertical-img">
+    </div>
+    <div class="col-md-7 col-lg-6">
+      <div class="card p-4 glass-card" data-aos="fade-left">
+        <div class="card-body">
+          <h4 class="card-title fw-bold text-center mb-4 text-dark">Business Information</h4>
+          <form>
+            <div class="mb-3">
+              <label for="businessName" class="form-label">Business Name</label>
+              <input type="text" class="form-control" id="businessName" required>
+            </div>
+            <div class="mb-3">
+              <label for="businessDescription" class="form-label">Business Description</label>
+              <textarea class="form-control" id="businessDescription" rows="4" required></textarea>
+            </div>
+            <div class="mb-3">
+              <label for="businessCategory" class="form-label">Category</label>
+              <select class="form-select" id="businessCategory" required>
+                <option selected disabled>Choose a category...</option>
+                <option>Fashion & Apparel</option>
+                <option>Food & Beverage</option>
+                <option>Handicrafts & Arts</option>
+                <option>Beauty & Wellness</option>
+                <option>Services</option>
+                <option>Technology</option>
+              </select>
+            </div>
+            <div class="mb-3">
+              <label for="contactEmail" class="form-label">Contact Email</label>
+              <input type="email" class="form-control" id="contactEmail" required>
+            </div>
+            <div class="mb-3">
+              <label for="phone" class="form-label">Phone Number</label>
+              <input type="tel" class="form-control" id="phone">
+            </div>
+            <div class="mb-3">
+              <label for="website" class="form-label">Website or Social Media Link</label>
+              <input type="url" class="form-control" id="website">
+            </div>
+            <div class="mb-4">
+              <label for="businessLogo" class="form-label">Business Logo / Image</label>
+              <input type="file" class="form-control" id="businessLogo" accept="image/*">
+            </div>
+            <div class="d-grid">
+              <button type="submit" class="btn btn-gold btn-lg">Submit</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="bg-lavender border-top py-4" style="background-color:#d8a8eba2;">
+  <div class="container">
+    <div class="row gy-3">
+      <div class="col-md-4">
+        <h6 class="fw-bold">WomenEmpower</h6>
+        <p class="text-muted small">Learn • Promote • Grow</p>
+      </div>
+      <div class="col-md-4">
+        <h6 class="fw-bold">Quick Links</h6>
+        <ul class="list-unstyled small">
+          <li><a href="learn.html" class="text-muted">Learn</a></li>
+          <li><a href="promote.html" class="text-muted">Promote</a></li>
+          <li><a href="mentors.html" class="text-muted">Mentors</a></li>
+        </ul>
+      </div>
+      <div class="col-md-4 text-md-end">
+        <div class="small text-muted">© 2025 WomenEmpower • All rights reserved</div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>AOS.init({ duration: 700, once: true });</script>
+</body>
+</html>

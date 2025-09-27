@@ -1,0 +1,295 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Women Empower — Promote</title>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+  <style>
+    :root{
+      --lavender:#f1e9f8;
+      --blush:#fde7f1;
+      --deep:#7b4397;
+      --gold:#ffcc70;
+      --muted:#6b6b6b;
+    }
+    .grad-text{
+      background: linear-gradient(90deg,var(--deep), #9b59b6);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+     .hero-gradient{
+      background: linear-gradient(135deg, var(--lavender) 0%, var(--blush) 55%, #fff 100%);
+    }
+    .btn-gold{background: var(--gold); color:#3a2f22; font-weight:600;}
+    .course-card:hover{transform: translateY(-5px); box-shadow:0 8px 20px rgba(0,0,0,0.1);}
+    .course-card{transition: .3s;}
+    .bg-lavender{background: var(--lavender);}
+    .bg-blush{background: var(--blush);}
+    .gold-text{-webkit-text-fill-color:var(--gold) ;}
+
+    .business-card {
+      border: 1px solid rgba(0,0,0,0.08);
+      border-radius: 12px;
+      overflow: hidden;
+      transition: transform .3s;
+    }
+    .business-card:hover{transform: translateY(-5px); box-shadow:0 8px 20px rgba(0,0,0,0.1);}
+    .form-select, .form-control {
+      border-radius: 8px;
+    }
+.form-select:focus {
+  border-color: var(--gold) !important;       /* gold border */
+  box-shadow: 0 0 0 0.25rem rgba(255, 204, 112, 0.25) !important; /* soft gold glow */
+}
+   .form-control:focus {
+  border-color: var(--gold) !important;       /* gold border */
+  box-shadow: 0 0 0 0.25rem rgba(255, 204, 112, 0.25) !important; /* soft gold glow */
+} 
+  </style>
+</head>
+<body class="bg-light">
+  
+  <!-- nav  -->
+<nav class="navbar navbar-expand-lg bg-white shadow-sm py-2 sticky-top">
+  <div class="container">
+    <a class="navbar-brand d-flex align-items-center" href="index.html">
+      <div class="rounded-3 d-flex align-items-center justify-content-center me-2"
+           style="width:40px;height:40px;background:linear-gradient(135deg,#D6A4E6,#FADADD);color:#fff;font-weight:700">
+        WE
+      </div>
+      <div class="pt-2">
+        <div class="fw-bold">Women Empower Hub</div>
+        <small class="text-muted" style="font-size:12px; position: relative; top: -10px;">Learn • Promote • Grow</small>
+      </div>
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="mainNav">
+      <ul class="navbar-nav ms-auto align-items-lg-center">
+        <li class="nav-item"><a class="nav-link" href="learn.html">Learn</a></li>
+        <li class="nav-item"><a class="nav-link active" href="promote.html">Promote</a></li>
+        <li class="nav-item"><a class="nav-link" href="mentors.html">Mentors</a></li>
+        <li class="nav-item"><a class="nav-link" href="story.html">Stories</a></li>
+        <li class="nav-item ms-lg-3">
+          <a class="btn text-white px-3" style="background:linear-gradient(90deg,#D6A4E6,#FADADD)" href="#">
+            Join Now
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- Hero Section -->
+<header class="text-center py-5 bg-blush" style="background-color:#d8a8eba2;">
+  <div class="container" data-aos="fade-up">
+    <h1 class="fw-bold display-5 grad-text">Discover Women-Led Businesses.</h1>
+    <p class="lead mx-auto" style="max-width:700px">
+      Support and explore incredible products and services created by women entrepreneurs.
+    </p>
+    <a href="#businesses" class="btn btn-gold btn-lg mt-3">Browse Directory</a>
+  </div>
+</header>
+
+<section class="py-5" id="businesses">
+  <div class="container">
+    <div class="text-center mb-4">
+      <h2 class="fw-bold grad-text" data-aos="fade-up">Our Business Directory</h2>
+      <p class="text-muted" data-aos="fade-up" data-aos-delay="100">Find businesses by category, location, or keyword.</p>
+    </div>
+
+    <!-- Filter -->
+    <div class="row g-4">
+      <div class="col-lg-3">
+        <div class="card p-3 shadow-sm" data-aos="fade-right">
+          <h5 class="fw-bold mb-3">Filters</h5>
+          <div class="mb-3">
+            <label for="categoryFilter" class="form-label text-muted small mb-1">Category</label>
+            <select class="form-select" id="categoryFilter">
+              <option selected>All Categories</option>
+              <option value="fashion">Fashion & Apparel</option>
+              <option value="food">Food & Beverage</option>
+              <option value="handicrafts">Handicrafts & Arts</option>
+              <option value="beauty">Beauty & Wellness</option>
+              <option value="services">Services</option>
+              <option value="tech">Technology</option>
+            </select>
+          </div>
+          <div class="mb-3">
+            <label for="locationFilter" class="form-label text-muted small mb-1">Location</label>
+            <select class="form-select" id="locationFilter">
+              <option selected>All Locations</option>
+              <option value="lahore">Lahore, Pakistan</option>
+              <option value="karachi">Karachi, Pakistan</option>
+              <option value="islamabad">Islamabad, Pakistan</option>
+            </select>
+          </div>
+          
+        </div>
+      </div>
+      <!-- Cards -->
+      <div class="col-lg-9">
+        <!-- search -->
+        <div class="row justify-content-centr">
+          <div class="mb-4 col-lg-9">
+            <label for="searchBar" class="form-label text-muted small mb-1">Search Keyword</label>
+            <div class="input-group">
+              <input type="text" class="form-control p-2" placeholder="Search...">
+              <button class="btn btn-gold" type="button"><i class="bi bi-search"></i></button>
+            </div>
+          </div>
+        </div>
+        <div class="row g-4">
+          <div class="col-md-6 col-xl-4 business-item" data-category="fashion" data-location="lahore" data-aos="fade-up">
+            <div class="card business-card h-100 shadow-sm">
+              <img src="assets/img/stitch.png" class="card-img-top object-fit-cover" alt="Fashion brand" style="height:200px">
+              <div class="card-body">
+                <h5 class="card-title fw-semibold">The Stitch Studio</h5>
+                <p class="card-text text-muted small">Handcrafted bespoke clothing & accessories.
+                  <br><i class="bi bi-geo-alt-fill me-1 text-danger"></i>Lahore, Pakistan
+                </p>
+                <a href="#" class="btn btn-gold btn-sm mt-2">View Profile</a>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-xl-4 business-item" data-category="food" data-location="karachi" data-aos="fade-up" data-aos-delay="100">
+            <div class="card business-card h-100 shadow-sm">
+            <img src="assets/img/aunt-kitchen.jpg" class="card-img-top object-fit-cover" alt="Bakery" style="height:200px">
+              <div class="card-body">
+                <h5 class="card-title fw-semibold">Auntie's Kitchen</h5>
+                <p class="card-text text-muted small">Delicious baked goods and custom cakes for all occasions.
+                  <br><i class="bi bi-geo-alt-fill me-1 text-danger"></i>Karachi, Pakistan
+                </p>
+                <a href="#" class="btn btn-gold btn-sm mt-2">View Profile</a>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-xl-4 business-item" data-category="handicrafts" data-location="islamabad" data-aos="fade-up" data-aos-delay="200">
+            <div class="card business-card h-100 shadow-sm">
+              <img src="assets/img/jewllery1.jfif" class="card-img-top object-fit-cover" alt="Jewelry brand" style="height:200px">
+              <div class="card-body">
+                <h5 class="card-title fw-semibold">Gemstone Jewels</h5>
+                <p class="card-text text-muted small">Elegant handmade jewelry and accessories.
+                  <br><i class="bi bi-geo-alt-fill me-1 text-danger"></i>Islamabad, Pakistan
+                </p>
+                <a href="#" class="btn btn-gold btn-sm mt-2">View Profile</a>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-xl-4 business-item" data-category="handicrafts" data-location="lahore" data-aos="fade-up">
+            <div class="card business-card h-100 shadow-sm">
+            <img src="assets/img/art.png" class="card-img-top object-fit-cover" alt="Art Supplies" style="height:200px">
+              <div class="card-body">
+                <h5 class="card-title fw-semibold">Artisan's Palette</h5>
+                <p class="card-text text-muted small">Hand-picked art supplies for creators of all levels.
+                  <br><i class="bi bi-geo-alt-fill me-1 text-danger"></i>Lahore, Pakistan
+                </p>
+                <a href="#" class="btn btn-gold btn-sm mt-2">View Profile</a>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-xl-4 business-item" data-category="beauty" data-location="karachi" data-aos="fade-up" data-aos-delay="100">
+            <div class="card business-card h-100 shadow-sm">
+               <img src="assets/img/skincare.png" class="card-img-top object-fit-cover" alt="Skincare" style="height:200px">
+              <div class="card-body">
+                <h5 class="card-title fw-semibold">Saffron Glow</h5>
+                <p class="card-text text-muted small">Organic and natural skincare products for radiant skin.
+                  <br><i class="bi bi-geo-alt-fill me-1 text-danger"></i>Karachi, Pakistan
+                </p>
+                <a href="#" class="btn btn-gold btn-sm mt-2">View Profile</a>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-xl-4 business-item" data-category="services" data-location="islamabad" data-aos="fade-up" data-aos-delay="200">
+            <div class="card business-card h-100 shadow-sm">
+                <img src="assets/img/counciling.png" class="card-img-top object-fit-cover" alt="Consulting" style="height:200px">
+              <div class="card-body">
+                <h5 class="card-title fw-semibold">Nexus Consulting</h5>
+                <p class="card-text text-muted small">Professional business consulting for startups and SMEs.
+                  <br><i class="bi bi-geo-alt-fill me-1 text-danger"></i>Islamabad, Pakistan
+                </p>
+                <a href="#" class="btn btn-gold btn-sm mt-2">View Profile</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Call for action -->
+<section class="container text-center py-5">
+  <h3 class="fw-bold mb-3 grad-text" data-aos="fade-up">Ready to list your brand?</h3>
+  <p class="text-muted mb-4" data-aos="fade-up" data-aos-delay="100">
+    Join our directory and start connecting with new customers today.
+  </p>
+  <a href="#" class="btn btn-gold px-4 py-2" data-aos="zoom-in">Get Started</a>
+</section>
+
+
+
+<!-- FOOTER -->
+<footer class="text-light py-5" style="background-color: #d8a8eba2;">
+  <div class="container">
+    <div class="row g-4">
+      
+      <!-- Column 1: Brand & Description -->
+      <div class="col-md-4">
+        <div class="d-flex align-items-center mb-2">
+          <div class="rounded-3 d-flex align-items-center justify-content-center me-2"
+               style="width:40px;height:40px;background:linear-gradient(135deg,#D6A4E6,#FADADD);color:#fff;font-weight:700">
+            WE
+          </div>
+          <h5 class="fw-bold mb-0">Women Empower Hub</h5>
+        </div>
+        <p class="small text-muted mt-2">
+          A community dedicated to helping women learn, promote, and grow their businesses.
+        </p>
+        <div class="social-icons mt-3">
+          <a href="#" class="text-white me-3"><i class="bi bi-facebook fs-4"></i></a>
+          <a href="#" class="text-white me-3"><i class="bi bi-instagram fs-4"></i></a>
+          <a href="#" class="text-white me-3"><i class="bi bi-linkedin fs-4"></i></a>
+        </div>
+      </div>
+      
+      <!-- Column 2: Quick Links -->
+      <div class="col-md-4">
+        <h6 class="fw-bold mb-3 text-gold">Quick Links</h6>
+        <ul class="list-unstyled small">
+          <li class="mb-2"><a href="learn.html" class="text-muted text-decoration-none">Learn</a></li>
+          <li class="mb-2"><a href="promote.html" class="text-muted text-decoration-none">Promote</a></li>
+          <li class="mb-2"><a href="mentors.html" class="text-muted text-decoration-none">Mentors</a></li>
+          <li class="mb-2"><a href="story.html" class="text-muted text-decoration-none">Stories</a></li>
+        </ul>
+      </div>
+      
+      <!-- Column 3: Contact & Legal -->
+      <div class="col-md-4">
+        <h6 class="fw-bold mb-3 text-gold">Get in Touch</h6>
+        <ul class="list-unstyled small">
+          <li class="text-muted mb-2">Email: <a href="mailto:info@womenempower.com" class="text-muted text-decoration-none">info@womenempower.com</a></li>
+          <li class="text-muted mb-2">Phone: +92 123 4567890</li>
+          <li class="text-muted">Location: Lahore, Pakistan</li>
+        </ul>
+        <div class="small text-muted mt-4 border-top pt-3">
+          &copy; 2025 Women Empower. All Rights Reserved.<br>
+          <a href="#" class="text-muted text-decoration-none">Privacy Policy</a> | <a href="#" class="text-muted text-decoration-none">Terms of Service</a>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>AOS.init({ duration: 700, once: true });</script>
+</body>
+</html>

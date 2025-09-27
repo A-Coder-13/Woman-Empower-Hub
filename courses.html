@@ -1,0 +1,536 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Women Empower — Learn</title>
+
+
+  <!-- Bootstrap CSS + Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+<link rel="stylesheet" href="styling.css">
+  <style>
+    /* :root{
+      --lavender:#f1e9f8;
+      --blush:#fde7f1;
+      --deep:#7b4397;
+      --gold:#ffcc70;
+      --muted:#6b6b6b;
+    }
+    .grad-text{
+      background: linear-gradient(90deg,var(--deep), #9b59b6);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .hero-gradient{
+      background: linear-gradient(135deg, var(--lavender) 0%, var(--blush) 55%, #fff 100%);
+    }
+    .btn-gold{background: var(--gold); color:#3a2f22; font-weight:600; border-radius: 40px;}
+    .course-card {
+      border: 1px solid rgba(0,0,0,0.08);
+      border-radius: 12px;
+      overflow: hidden;
+      transition: transform .3s;
+      cursor: pointer;
+    }
+    .course-card:hover{transform: translateY(-5px); box-shadow:0 8px 20px rgba(0,0,0,0.1);}
+    .bg-lavender{background: var(--lavender);}
+    .bg-blush{background: var(--blush);}
+    .instructor-img {
+      width: 50px;
+      height: 50px;
+      object-fit: cover;
+    } */
+  </style>
+</head>
+<body class="bg-light">
+
+<!-- JSON Data for Courses -->
+<script>
+const coursesData = [
+  {
+    id: 1,
+    title: "Digital Marketing for Beginners",
+    category: "Marketing",
+    description: "Learn the fundamentals of social media, SEO, and content marketing to reach more customers.",
+    thumbnail: "assets/img/d-m.png",
+    instructor: {
+      name: "Sana Tariq",
+      img: "assets/img/sanatariq.png"
+    },
+    lessons: [
+      {title: "Introduction to Digital Marketing", duration: "1h 30m"},
+      {title: "Social Media Strategy", duration: "2h 15m"},
+      {title: "Content Creation and Curation", duration: "1h 45m"},
+      {title: "Basics of Search Engine Optimization (SEO)", duration: "2h 0m"},
+      {title: "Email Marketing Campaigns", duration: "1h 30m"}
+    ],
+    fullDescription: "This course is designed for aspiring entrepreneurs who want to master the art of digital marketing. You'll learn how to build an effective online presence, create compelling content, and use various digital channels to drive sales. The course covers everything from crafting your brand's voice to analyzing campaign performance."
+  },
+  {
+    id: 2,
+    title: "Financial Planning for Startups",
+    category: "Finance",
+    description: "A practical guide to budgeting, fundraising, and managing your business finances from day one.",
+    thumbnail: "assets/img/f-p.png",
+    instructor: {
+      name: "Aisha Sohail",
+      img: "assets/img/aishasohail.png"
+    },
+    lessons: [
+      {title: "Creating a Business Budget", duration: "1h 50m"},
+      {title: "Understanding Financial Statements", duration: "2h 10m"},
+      {title: "Funding Your Business", duration: "2h 30m"},
+      {title: "Taxation and Legal Basics", duration: "1h 0m"}
+    ],
+    fullDescription: "Taking control of your finances is the key to business longevity. This course provides a clear, step-by-step framework for managing your startup's money. You'll learn how to create realistic budgets, understand profit and loss statements, and explore different funding options, from bootstrapping to seeking angel investors. The course demystifies financial concepts and empowers you to make smart decisions."
+  },
+  {
+    id: 3,
+    title: "E-Commerce Store Setup",
+    category: "Technology",
+    description: "Build your online store from scratch using popular platforms like Shopify and WooCommerce.",
+    thumbnail: "assets/img/e-store.png",
+    instructor: {
+      name: "Sara Javed",
+      img: "assets/img/sara.png"
+    },
+    lessons: [
+      {title: "Choosing the Right Platform", duration: "1h 0m"},
+      {title: "Setting Up Your Storefront", duration: "2h 0m"},
+      {title: "Product Listing and Management", duration: "1h 45m"},
+      {title: "Payment Gateways & Shipping", duration: "1h 30m"}
+    ],
+    fullDescription: "Ready to sell your products online? This hands-on course will walk you through the entire process of setting up a professional e-commerce store. We'll cover everything from platform selection and design to product photography and setting up secure payment methods. By the end, you'll have a fully functional online store ready to take its first order."
+  },
+  {
+    id: 4,
+    title: "Branding and Visual Identity",
+    category: "Marketing",
+    description: "Develop a strong brand identity that resonates with your target audience and sets you apart.",
+    thumbnail: "assets/img/logo.png",
+    instructor: {
+      name: "Maria Qureshi",
+      img: "assets/img/maria.png"
+    },
+    lessons: [
+      {title: "What is a Brand?", duration: "1h 10m"},
+      {title: "Creating a Brand Story", duration: "1h 40m"},
+      {title: "Logo Design and Color Palette", duration: "2h 20m"},
+      {title: "Consistent Messaging Across Platforms", duration: "1h 50m"}
+    ],
+    fullDescription: "Your brand is more than just a logo; it's the feeling you evoke in your customers. This course helps you define your brand's core values, create a compelling brand story, and translate that into a cohesive visual identity. Learn to craft a brand that not only looks good but also builds trust and loyalty."
+  },
+  {
+    id: 5,
+    title: "Mastering Social Media Ads",
+    category: "Marketing",
+    description: "Learn how to create and manage profitable ad campaigns on platforms like Facebook and Instagram.",
+    thumbnail: "assets/img/social.png",
+    instructor: {
+      name: "Fatima Raza",
+      img: "assets/img/fatima.png"
+    },
+    lessons: [
+      {title: "Fundamentals of Social Ads", duration: "1h 30m"},
+      {title: "Audience Targeting", duration: "2h 0m"},
+      {title: "Ad Copy and Visuals", duration: "1h 45m"},
+      {title: "Analyzing Campaign Performance", duration: "2h 15m"}
+    ],
+    fullDescription: "This course is your blueprint for running successful paid social media campaigns. You'll dive deep into audience targeting, learn to write effective ad copy, and understand the metrics that matter. Stop wasting money on ads that don't convert and start building campaigns that generate real results for your business."
+  },
+  {
+    id: 6,
+    title: "Product Photography for Beginners",
+    category: "Creative",
+    description: "Transform your product photos from average to amazing using just your smartphone.",
+    thumbnail: "assets/img/img.png",
+    instructor: {
+      name: "Zoya Ali",
+      img: "assets/img/zoya.png"
+    },
+    lessons: [
+      {title: "Smartphone Photography Essentials", duration: "1h 0m"},
+      {title: "Lighting and Composition", duration: "1h 45m"},
+      {title: "Editing with Free Apps", duration: "1h 30m"},
+      {title: "Creating a Home Studio", duration: "1h 15m"}
+    ],
+    fullDescription: "Great product photos can make all the difference. This course empowers you to take stunning, professional-quality pictures of your products without expensive gear. We'll cover everything from lighting techniques and composition to editing on your phone, giving your online store a polished and professional look."
+  },
+  {
+    id: 7,
+    title: "Public Speaking & Pitching",
+    category: "Leadership",
+    description: "Develop confidence and learn to deliver powerful pitches that captivate investors and customers.",
+    thumbnail: "assets/img/public2.jpeg",
+    instructor: {
+      name: "Hina Chaudhry",
+      img: "assets/img/hinach.png"
+    },
+    lessons: [
+      {title: "Overcoming Stage Fright", duration: "1h 20m"},
+      {title: "Structuring Your Pitch", duration: "1h 50m"},
+      {title: "Body Language & Vocal Tone", duration: "2h 0m"},
+      {title: "Handling Q&A Sessions", duration: "1h 30m"}
+    ],
+    fullDescription: "Speaking in front of an audience can be intimidating, but it's a vital skill for every business owner. This course helps you build the confidence to speak clearly and persuasively. You'll learn to structure a compelling pitch, use effective body language, and engage your audience, whether you're pitching to investors or speaking to a crowd."
+  },
+  {
+    id: 8,
+    title: "Startup Legal Basics",
+    category: "Legal",
+    description: "Understand the key legal aspects of starting a business, from registration to contracts.",
+    thumbnail: "assets/img/basic.png",
+    instructor: {
+      name: "Sobia Akram",
+      img: "assets/img/sobia.png"
+    },
+    lessons: [
+      {title: "Business Structures", duration: "1h 15m"},
+      {title: "Intellectual Property", duration: "1h 45m"},
+      {title: "Contracts and Agreements", duration: "2h 0m"},
+      {title: "Employment Law", duration: "1h 30m"}
+    ],
+    fullDescription: "Navigating the legal landscape can be complex. This course provides a clear overview of the legal requirements for a new business, helping you avoid common pitfalls. We'll cover everything from choosing the right business structure to protecting your intellectual property and understanding basic contracts, ensuring your business is built on a solid legal foundation."
+  },
+  {
+    id: 9,
+    title: "Customer Service Excellence",
+    category: "Operations",
+    description: "Build a loyal customer base by mastering the art of exceptional customer service.",
+    thumbnail: "assets/img/customer.png",
+    instructor: {
+      name: "Asma Rehman",
+      img: "assets/img/asma.png"
+    },
+    lessons: [
+      {title: "The Customer-First Mindset", duration: "1h 0m"},
+      {title: "Handling Difficult Situations", duration: "1h 30m"},
+      {title: "Building Customer Loyalty", duration: "1h 45m"},
+      {title: "Collecting and Using Feedback", duration: "1h 15m"}
+    ],
+    fullDescription: "Customer service is the heart of every successful business. This course provides practical strategies for building strong relationships with your customers, turning them into advocates for your brand. Learn how to effectively resolve issues, gather valuable feedback, and create a service experience that keeps customers coming back for more."
+  },
+  {
+    id: 10,
+    title: "Scaling Your Small Business",
+    category: "Strategy",
+    description: "A comprehensive guide to scaling your operations and expanding your business profitably.",
+    thumbnail: "assets/img/business.png",
+    instructor: {
+      name: "Nida Ejaz",
+      img: "assets/img/sara.png"
+    },
+    lessons: [
+      {title: "Growth Strategies", duration: "1h 45m"},
+      {title: "Team Building and Delegation", duration: "2h 30m"},
+      {title: "Operational Efficiency", duration: "2h 0m"},
+      {title: "Financial Modeling for Growth", duration: "1h 45m"}
+    ],
+    fullDescription: "Ready to take your business to the next level? This course focuses on the strategic planning required for successful scaling. You'll learn how to identify new market opportunities, build a capable team, and optimize your business processes to handle increased demand without sacrificing quality or profitability."
+  },
+  {
+    id: 11,
+    title: "Building a Personal Brand",
+    category: "Marketing",
+    description: "Learn how to establish yourself as an authority in your field and attract new opportunities.",
+    thumbnail: "assets/img/branding-p.png",
+    instructor: {
+      name: "Anam Siddiqui",
+      img: "assets/img/anam.png"
+    },
+    lessons: [
+      {title: "Defining Your Niche", duration: "1h 10m"},
+      {title: "Storytelling for Your Brand", duration: "1h 40m"},
+      {title: "Content Marketing for Personal Brand", duration: "2h 20m"},
+      {title: "Networking and Community Building", duration: "1h 50m"}
+    ],
+    fullDescription: "A strong personal brand is a powerful asset. This course helps you define your unique value proposition and communicate it effectively to the world. You'll learn to use content, networking, and social media to build credibility and attract customers who trust and believe in you."
+  },
+  {
+    id: 12,
+    title: "Social Media for Business",
+    category: "Marketing",
+    description: "Create and implement a social media strategy that drives engagement and growth.",
+    thumbnail: "assets/img/socialmedia1.png",
+    instructor: {
+      name: "Sobia Akram",
+      img: "assets/img/sobia2.png"
+    },
+    lessons: [
+      {title: "Choosing the Right Platforms", duration: "1h 0m"},
+      {title: "Creating a Content Calendar", duration: "1h 45m"},
+      {title: "Analytics and Performance Tracking", duration: "2h 0m"},
+      {title: "Community Engagement", duration: "1h 30m"}
+    ],
+    fullDescription: "Social media is no longer optional for businesses. This course will equip you with the skills to create a strategic social media plan that generates results. Learn to define your goals, create a content calendar, and use analytics to measure your success and grow your online community."
+  },
+  {
+    id: 13,
+    title: "Email Marketing Mastery",
+    category: "Marketing",
+    description: "Learn how to build an email list and run campaigns that convert subscribers into customers.",
+    thumbnail: "assets/img/mail.png",
+    instructor: {
+      name: "Hina Chaudhry",
+      img: "assets/img/same.png"
+    },
+    lessons: [
+      {title: "Building Your Email List", duration: "1h 30m"},
+      {title: "Writing Compelling Subject Lines", duration: "1h 45m"},
+      {title: "Automated Email Sequences", duration: "2h 15m"},
+      {title: "Segmentation and Personalization", duration: "1h 30m"}
+    ],
+    fullDescription: "Email marketing remains one of the most effective tools for nurturing leads and driving sales. This course teaches you how to build a high-quality email list and create campaigns that resonate with your audience. You'll learn to craft engaging content, set up automated sequences, and use personalization to boost your conversion rates."
+  },
+  {
+    id: 14,
+    title: "Content Creation Strategy",
+    category: "Creative",
+    description: "Develop a content plan that attracts and engages your target audience across multiple platforms.",
+    thumbnail: "assets/img/content.png",
+    instructor: {
+      name: "Zoya Ali",
+      img: "assets/img/z-a.png"
+    },
+    lessons: [
+      {title: "Finding Your Content Niche", duration: "1h 10m"},
+      {title: "Brainstorming and Ideation", duration: "1h 50m"},
+      {title: "Content Formats", duration: "2h 0m"},
+      {title: "Distribution and Promotion", duration: "1h 40m"}
+    ],
+    fullDescription: "Content is king, but without a strategy, it's just noise. This course will teach you how to create a a strategic content plan that aligns with your business goals. You'll learn to brainstorm ideas, choose the right formats, and distribute your content effectively to build a loyal audience and establish your authority."
+  },
+  {
+    id: 15,
+    title: "Time Management for Entrepreneurs",
+    category: "Leadership",
+    description: "Learn effective techniques to manage your time, boost productivity, and avoid burnout.",
+    thumbnail: "assets/img/time.png",
+    instructor: {
+      name: "Nida Ejaz",
+      img: "assets/img/same.png"
+    },
+    lessons: [
+      {title: "The Productivity Mindset", duration: "1h 0m"},
+      {title: "Prioritization Techniques", duration: "1h 30m"},
+      {title: "Setting and Achieving Goals", duration: "1h 45m"},
+      {title: "Avoiding Procrastination", duration: "1h 15m"}
+    ],
+    fullDescription: "As an entrepreneur, your time is your most valuable asset. This course provides a range of practical strategies to help you manage your time effectively, prioritize your tasks, and achieve your goals without feeling overwhelmed. Learn to work smarter, not harder, and reclaim your work-life balance."
+  }
+];
+
+// JavaScript to render the page and handle clicks
+function renderCourseCards() {
+  const container = document.getElementById('course-cards-container');
+  container.innerHTML = '';
+  coursesData.forEach(course => {
+    const cardHtml = `
+      <div class="col-md-6 col-lg-4 d-flex align-items-stretch" data-aos="fade-up" onclick="showCourseDetails(${course.id})">
+        <div class="card course-card h-100 shadow-sm">
+          <img src="${course.thumbnail}" class="card-img-top object-fit-cover" alt="${course.title}" style="height:200px">
+          <div class="card-body d-flex flex-column">
+            <h5 class="card-title fw-semibold grad-text">${course.title}</h5>
+            <p class="card-text text-muted small flex-grow-1">${course.description}</p>
+            <div class="d-flex align-items-center mt-3">
+              <img src="${course.instructor.img}" alt="${course.instructor.name}" class="rounded-circle me-2 instructor-img">
+              <div class="small">
+                <div class="fw-bold">${course.instructor.name}</div>
+                <div class="text-muted">Instructor</div>
+              </div>
+            </div>
+            <div class="d-grid mt-3">
+              <button class="btn btn-outline-info btn-sm rounded-pill">View Details</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    `;
+    container.innerHTML += cardHtml;
+  });
+}
+
+function showCourseDetails(courseId) {
+  const course = coursesData.find(c => c.id === courseId);
+  const detailsContainer = document.getElementById('course-details-container');
+  const cardsSection = document.getElementById('courses-section');
+
+  if (!course) {
+    console.error("Course not found!");
+    return;
+  }
+
+  const detailsHtml = `
+    <div class="container py-5" data-aos="fade-up">
+      <button onclick="hideCourseDetails()" class="btn btn-outline-warning mb-4">
+        <i class="bi bi-arrow-left-circle me-2"></i>Back to All Courses
+      </button>
+
+      <div class="card p-4 shadow-sm">
+        <div class="row g-4">
+          <div class="col-md-6">
+            <img src="${course.thumbnail}" class="img-fluid rounded-3 shadow-sm" alt="${course.title}">
+          </div>
+          <div class="col-md-6">
+            <span class="badge bg-primary mb-2">${course.category}</span>
+            <h1 class="fw-bold grad-text mb-3">${course.title}</h1>
+            <p class="lead text-muted">${course.fullDescription}</p>
+            <div class="d-flex align-items-center mb-4">
+              <img src="${course.instructor.img}" alt="${course.instructor.name}" class="rounded-circle me-3" style="width:70px; height:70px; object-fit:cover;">
+              <div>
+                <div class="fw-bold fs-5">${course.instructor.name}</div>
+                <div class="text-muted">Instructor</div>
+              </div>
+            </div>
+            <a href="Student form2.html" class="btn btn-gold btn-lg rounded-pill px-4">Enroll Now</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="mt-5 p-4 bg-white rounded-3 shadow-sm" data-aos="fade-up">
+        <h3 class="fw-bold grad-text mb-4">Course Curriculum</h3>
+        <ul class="list-group list-group-flush">
+          ${course.lessons.map((lesson, index) => `
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+              <div>
+                <i class="bi bi-play-circle-fill me-2 text-primary"></i>
+                Lesson ${index + 1}: ${lesson.title}
+              </div>
+              <span class="text-muted small">${lesson.duration}</span>
+            </li>
+          `).join('')}
+        </ul>
+      </div>
+    </div>
+  `;
+  detailsContainer.innerHTML = detailsHtml;
+  detailsContainer.style.display = 'block';
+  cardsSection.style.display = 'none';
+}
+
+function hideCourseDetails() {
+  document.getElementById('course-details-container').style.display = 'none';
+  document.getElementById('courses-section').style.display = 'block';
+}
+
+// Initial render when the page loads
+document.addEventListener('DOMContentLoaded', () => {
+  renderCourseCards();
+  AOS.init({ duration: 700, once: true });
+});
+</script>
+
+<!-- NAVBAR -->
+<nav class="navbar navbar-expand-lg bg-white shadow-sm py-2 sticky-top">
+  <div class="container">
+    <a class="navbar-brand d-flex align-items-center" href="index.html">
+      <div class="rounded-3 d-flex align-items-center justify-content-center me-2"
+           style="width:40px;height:40px;background:linear-gradient(135deg,#D6A4E6,#FADADD);color:#fff;font-weight:700">
+        WE
+      </div>
+      <div class="pt-2">
+        <div class="fw-bold">Women Empower Hub</div>
+        <small class="text-muted" style="font-size:12px; position: relative; top: -10px;">Learn • Promote • Grow</small>
+      </div>
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="mainNav">
+      <ul class="navbar-nav ms-auto align-items-lg-center">
+        <li class="nav-item"><a class="nav-link active" href="learn.html">Learn</a></li>
+        <li class="nav-item"><a class="nav-link" href="promote.html">Promote</a></li>
+        <li class="nav-item"><a class="nav-link" href="mentors.html">Mentors</a></li>
+        <li class="nav-item"><a class="nav-link" href="stories.html">Stories</a></li>
+        <li class="nav-item ms-lg-3">
+          <a class="btn text-white px-3" style="background:linear-gradient(90deg,#D6A4E6,#FADADD)" href="#">
+            Join Now
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="text-center py-5 bg-lavender" style="background-color:#d8a8eba2;">
+  <div class="container" data-aos="fade-up">
+    <h1 class="fw-bold display-5 grad-text">Learn to Grow Your Business.</h1>
+    <p class="lead mx-auto" style="max-width:700px">
+      Explore our comprehensive courses designed to give you the skills and confidence to succeed.
+    </p>
+  </div>
+</header>
+
+<!-- COURSES SECTION -->
+<section class="py-5" id="courses-section">
+  <div class="container">
+    <div class="row g-4" id="course-cards-container">
+      <!-- Course cards will be injected here by JavaScript -->
+    </div>
+  </div>
+</section>
+
+<!-- COURSE DETAILS SECTION (initially hidden) -->
+<section id="course-details-container" style="display: none;"></section>
+
+<!-- FOOTER -->
+<footer class="text-light py-5" style="background-color: #d8a8eba2;">
+  <div class="container">
+    <div class="row g-4">
+      
+      <!-- Column 1: Brand & Description -->
+      <div class="col-md-4">
+        <div class="d-flex align-items-center mb-2">
+          <div class="rounded-3 d-flex align-items-center justify-content-center me-2"
+               style="width:40px;height:40px;background:linear-gradient(135deg,#D6A4E6,#FADADD);color:#fff;font-weight:700">
+            WE
+          </div>
+          <h5 class="fw-bold mb-0">Women Empower Hub</h5>
+        </div>
+        <p class="small text-muted mt-2">
+          A community dedicated to helping women learn, promote, and grow their businesses.
+        </p>
+        <div class="social-icons mt-3">
+          <a href="#" class="text-white me-3"><i class="bi bi-facebook fs-4"></i></a>
+          <a href="#" class="text-white me-3"><i class="bi bi-instagram fs-4"></i></a>
+          <a href="#" class="text-white me-3"><i class="bi bi-linkedin fs-4"></i></a>
+        </div>
+      </div>
+      
+      <!-- Column 2: Quick Links -->
+      <div class="col-md-4">
+        <h6 class="fw-bold mb-3 text-gold">Quick Links</h6>
+        <ul class="list-unstyled small">
+          <li class="mb-2"><a href="learn.html" class="text-muted text-decoration-none">Learn</a></li>
+          <li class="mb-2"><a href="promote.html" class="text-muted text-decoration-none">Promote</a></li>
+          <li class="mb-2"><a href="mentors.html" class="text-muted text-decoration-none">Mentors</a></li>
+          <li class="mb-2"><a href="stories.html" class="text-muted text-decoration-none">Stories</a></li>
+        </ul>
+      </div>
+      
+      <!-- Column 3: Contact & Legal -->
+      <div class="col-md-4">
+        <h6 class="fw-bold mb-3 text-gold">Get in Touch</h6>
+        <ul class="list-unstyled small">
+          <li class="text-muted mb-2">Email: <a href="mailto:info@womenempower.com" class="text-muted text-decoration-none">info@womenempower.com</a></li>
+          <li class="text-muted mb-2">Phone: +92 123 4567890</li>
+          <li class="text-muted">Location: Lahore, Pakistan</li>
+        </ul>
+        <div class="small text-muted mt-4 border-top pt-3">
+          &copy; 2025 Women Empower. All Rights Reserved.<br>
+          <a href="#" class="text-muted text-decoration-none">Privacy Policy</a> | <a href="#" class="text-muted text-decoration-none">Terms of Service</a>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+</body>
+</html>

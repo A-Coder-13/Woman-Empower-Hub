@@ -1,0 +1,620 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Women Empower — Multi-Step Enrollment</title>
+
+  <!-- Bootstrap CSS + Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+  <style>
+    :root {
+      --lavender: #f1e9f8;
+      --blush: #fde7f1;
+      --deep: #7b4397;
+      --gold: #ffcc70;
+      --muted: #6b6b6b;
+    }
+
+    /* Default body background color */
+    body {
+      background-color: #f4f0f8;
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      min-height: 100vh;
+      transition: background-image 0.5s ease-in-out, background-color 0.5s ease-in-out;
+    }
+
+    /* Success background state */
+    body.success-bg {
+      background-image: url("https://images.pexels.com/photos/4050362/pexels-photo-4050362.jpeg");
+      background-color: transparent;
+    }
+
+    .grad-text {
+      background: linear-gradient(90deg, var(--deep), #9b59b6);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .btn-gold {
+      background: var(--gold);
+      color: #3a2f22;
+      font-weight: 600;
+      border: none;
+      border-radius: 40px;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .btn-gold:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      color: #3a2f22;
+    }
+
+    .form-control,
+    .form-select {
+      border-radius: 8px;
+    }
+
+    /* Custom focus and check styles */
+    .form-control:focus,
+    .form-select:focus,
+    .form-check-input:focus {
+      border-color: var(--deep);
+      box-shadow: 0 0 0 0.25rem rgba(123, 67, 151, 0.25);
+    }
+    
+    .form-check-input:checked {
+      background-color: var(--deep);
+      border-color: var(--deep);
+    }
+
+    .step-nav-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 2rem;
+      position: relative;
+    }
+
+    .step-nav-container::before {
+      content: '';
+      position: absolute;
+      top: 15px;
+      left: 10%;
+      right: 10%;
+      height: 4px;
+      background-color: #e9ecef;
+      z-index: 0;
+    }
+
+    .step-indicator {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+      z-index: 1;
+      transition: color 0.3s;
+    }
+
+    .step-indicator .step-number {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      background-color: #e9ecef;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-weight: bold;
+      color: #6c757d;
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+    .step-indicator .step-label {
+      font-size: 0.8rem;
+      margin-top: 0.5rem;
+      white-space: nowrap;
+      transition: color 0.3s;
+      color: #6c757d;
+    }
+
+    .step-indicator.active .step-number {
+      background-color: var(--deep);
+      color: #fff;
+    }
+
+    .step-indicator.active .step-label {
+      color: var(--deep);
+      font-weight: bold;
+    }
+
+    /* Connectors for mobile */
+    @media (max-width: 768px) {
+      .step-nav-container {
+        flex-direction: column;
+        align-items: flex-start;
+        padding-left: 1rem;
+      }
+
+      .step-nav-container::before {
+        top: 0;
+        left: 20px;
+        bottom: 0;
+        width: 4px;
+        height: 100%;
+      }
+
+      .step-indicator {
+        flex-direction: row;
+        margin-bottom: 1.5rem;
+      }
+
+      .step-indicator .step-number {
+        margin-right: 1rem;
+      }
+    }
+
+    .form-step {
+      display: none;
+    }
+
+    .form-step.active {
+      display: block;
+    }
+
+    /* Frosted glass card styling */
+    .card {
+      border-radius: 12px;
+      border: none;
+      background: rgba(255, 255, 255, 0.8);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Success page styling */
+    .success-page {
+      display: none;
+      text-align: center;
+      padding: 4rem 2rem;
+    }
+
+    .success-page .bi-check-circle {
+      font-size: 4rem;
+      color: #28a745;
+      margin-bottom: 1rem;
+    }
+
+    /* Hero section styling */
+    .hero-gradient {
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.2));
+      -webkit-backdrop-filter: blur(5px);
+      backdrop-filter: blur(5px);
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- JSON Data for Courses -->
+  <script>
+    const coursesData = [
+      { id: 1, title: "Digital Marketing for Beginners" },
+      { id: 2, title: "Financial Planning for Startups" },
+      { id: 3, title: "E-Commerce Store Setup" },
+      { id: 4, title: "Branding and Visual Identity" },
+      { id: 5, title: "Mastering Social Media Ads" },
+      { id: 6, title: "Product Photography for Beginners" },
+      { id: 7, title: "Public Speaking & Pitching" },
+      { id: 8, title: "Startup Legal Basics" },
+      { id: 9, title: "Customer Service Excellence" },
+      { id: 10, title: "Scaling Your Small Business" },
+      { id: 11, title: "Building a Personal Brand" },
+      { id: 12, title: "Social Media for Business" },
+      { id: 13, title: "Email Marketing Mastery" },
+      { id: 14, title: "Content Creation Strategy" },
+      { id: 15, title: "Time Management for Entrepreneurs" }
+    ];
+
+    let currentStep = 1;
+    const totalSteps = 3;
+
+    // Function to display the current form step
+    function showStep(step) {
+      const steps = document.querySelectorAll('.form-step');
+      steps.forEach(s => s.classList.remove('active'));
+      document.getElementById(`step-${step}`).classList.add('active');
+      updateStepIndicators(step);
+      updateButtonVisibility(step);
+    }
+
+    // Function to update the visual step indicators
+    function updateStepIndicators(step) {
+      const indicators = document.querySelectorAll('.step-indicator');
+      indicators.forEach((indicator, index) => {
+        if (index + 1 <= step) {
+          indicator.classList.add('active');
+        } else {
+          indicator.classList.remove('active');
+        }
+      });
+    }
+
+    // Function to control button visibility
+    function updateButtonVisibility(step) {
+      const prevBtn = document.getElementById('prevBtn');
+      const nextBtn = document.getElementById('nextBtn');
+      const submitBtn = document.getElementById('submitBtn');
+
+      prevBtn.style.display = step === 1 ? 'none' : 'inline-block';
+      nextBtn.style.display = step === totalSteps ? 'none' : 'inline-block';
+      submitBtn.style.display = step === totalSteps ? 'inline-block' : 'none';
+    }
+
+    // Function to move to the next step
+    function nextStep() {
+      const currentForm = document.getElementById(`step-${currentStep}`);
+      const inputs = currentForm.querySelectorAll('input, select, textarea');
+      let allValid = true;
+      inputs.forEach(input => {
+        if (input.required && !input.value) {
+          input.classList.add('is-invalid');
+          allValid = false;
+        } else {
+          input.classList.remove('is-invalid');
+        }
+      });
+
+      if (allValid) {
+        currentStep++;
+        showStep(currentStep);
+      }
+    }
+
+    // Function to move to the previous step
+    function prevStep() {
+      currentStep--;
+      showStep(currentStep);
+    }
+
+    // Function to handle form submission and display the success page
+    function submitForm() {
+      const formCard = document.getElementById('formCard');
+      const successPage = document.getElementById('successPage');
+
+      // Hide the form and show the success page
+      formCard.style.display = 'none';
+      successPage.style.display = 'block';
+
+      // Add the class to change the background
+      document.body.classList.add('success-bg');
+    }
+
+    // Function to reset the form and go back to step 1
+    function resetForm() {
+      const formCard = document.getElementById('formCard');
+      const successPage = document.getElementById('successPage');
+
+      document.getElementById('enrollmentForm').reset();
+      currentStep = 1;
+      showStep(currentStep);
+
+      // Hide the success page and show the form
+      successPage.style.display = 'none';
+      formCard.style.display = 'block';
+
+      // Remove the class to reset the background
+      document.body.classList.remove('success-bg');
+    }
+
+    // Function to highlight the active page in the navbar
+    function setActiveNavLink() {
+      const navLinks = document.querySelectorAll('.navbar-nav .nav-link, .navbar-nav .btn');
+      navLinks.forEach(link => {
+        if (link.textContent.trim().toLowerCase() === 'join now') {
+          link.classList.add('active');
+        } else {
+          link.classList.remove('active');
+        }
+      });
+    }
+
+    // Initial setup on page load
+    document.addEventListener('DOMContentLoaded', () => {
+      showStep(currentStep);
+      setActiveNavLink();
+
+      const courseSelect = document.getElementById('courseSelect');
+      coursesData.forEach(course => {
+        const option = document.createElement('option');
+        option.value = course.id;
+        option.textContent = course.title;
+        courseSelect.appendChild(option);
+      });
+    });
+  </script>
+
+  <!-- NAVBAR -->
+  <nav class="navbar navbar-expand-lg bg-white shadow-sm py-2 sticky-top">
+    <div class="container">
+      <a class="navbar-brand d-flex align-items-center" href="index.html">
+        <div class="rounded-3 d-flex align-items-center justify-content-center me-2"
+          style="width:40px;height:40px;background:linear-gradient(135deg,#D6A4E6,#FADADD);color:#fff;font-weight:700">
+          WE
+        </div>
+        <div class="pt-2">
+          <div class="fw-bold">Women Empower Hub</div>
+          <small class="text-muted" style="font-size:12px; position: relative; top: -10px;">Learn • Promote •
+            Grow</small>
+        </div>
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="mainNav">
+        <ul class="navbar-nav ms-auto align-items-lg-center">
+          <li class="nav-item"><a class="nav-link" href="learn.html">Learn</a></li>
+          <li class="nav-item"><a class="nav-link" href="promote.html">Promote</a></li>
+          <li class="nav-item"><a class="nav-link" href="mentors.html">Mentors</a></li>
+          <li class="nav-item"><a class="nav-link" href="stories.html">Stories</a></li>
+          <li class="nav-item ms-lg-3">
+            <a class="btn text-white px-3" style="background:linear-gradient(90deg,#D6A4E6,#FADADD)" href="#">
+              Join Now
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <header class="text-center py-5 hero-gradient" style="background-color:#d8a8eba2;">
+    <div class="container" data-aos="fade-up">
+      <h1 class="fw-bold display-5 grad-text">Enroll Now.</h1>
+      <p class="lead mx-auto" style="max-width:700px">
+        Please provide your information to complete your enrollment.
+      </p>
+    </div>
+  </header>
+
+  <!-- ENROLLMENT FORM SECTION -->
+  <section class="py-5">
+    <div class="container d-flex justify-content-center" data-aos="fade-up">
+      <div id="formCard" class="card p-4 shadow-sm" style="max-width:800px; width:100%;">
+        <div class="card-body">
+
+          <!-- Step Navigation Indicators -->
+          <div class="step-nav-container mb-5">
+            <div class="step-indicator active">
+              <span class="step-number">1</span>
+              <span class="step-label">Personal Info</span>
+            </div>
+            <div class="step-indicator">
+              <span class="step-number">2</span>
+              <span class="step-label">Academics</span>
+            </div>
+            <div class="step-indicator">
+              <span class="step-number">3</span>
+              <span class="step-label">Declaration</span>
+            </div>
+          </div>
+
+          <form id="enrollmentForm" onsubmit="event.preventDefault(); submitForm();">
+
+            <!-- Step 1: Personal Information -->
+            <div id="step-1" class="form-step active">
+              <h3 class="fw-bold grad-text mb-4">Personal & Contact Information</h3>
+              <div class="row g-3">
+                <div class="col-md-6 mb-3">
+                  <label for="fullName" class="form-label">Full Name</label>
+                  <input type="text" class="form-control" id="fullName" name="fullName" required>
+                  <div class="invalid-feedback">Please enter your full name.</div>
+                </div>
+                <div class="col-md-6 mb-3">
+                  <label for="email" class="form-label">Email address</label>
+                  <input type="email" class="form-control" id="email" name="email" required>
+                  <div class="invalid-feedback">Please enter a valid email.</div>
+                </div>
+                <div class="col-md-6 mb-3">
+                  <label for="phone" class="form-label">Phone Number</label>
+                  <input type="tel" class="form-control" id="phone" name="phone" required>
+                  <div class="invalid-feedback">Please enter your phone number.</div>
+                </div>
+                <div class="col-md-6 mb-3">
+                  <label for="dob" class="form-label">Date of Birth</label>
+                  <input type="date" class="form-control" id="dob" name="dob" required>
+                  <div class="invalid-feedback">Please enter your date of birth.</div>
+                </div>
+                <div class="col-md-12 mb-3">
+                  <label for="address" class="form-label">Street Address</label>
+                  <input type="text" class="form-control" id="address" name="address" required>
+                  <div class="invalid-feedback">Please enter your street address.</div>
+                </div>
+                <div class="col-md-6 mb-3">
+                  <label for="city" class="form-label">City</label>
+                  <input type="text" class="form-control" id="city" name="city" required>
+                  <div class="invalid-feedback">Please enter your city.</div>
+                </div>
+                <div class="col-md-6 mb-3">
+                  <label for="state" class="form-label">State/Province</label>
+                  <input type="text" class="form-control" id="state" name="state" required>
+                  <div class="invalid-feedback">Please enter your state or province.</div>
+                </div>
+                <div class="col-md-6 mb-3">
+                  <label for="zip" class="form-label">Zip/Postal Code</label>
+                  <input type="text" class="form-control" id="zip" name="zip" required>
+                  <div class="invalid-feedback">Please enter your zip or postal code.</div>
+                </div>
+                <div class="col-md-6 mb-3">
+                  <label for="country" class="form-label">Country</label>
+                  <input type="text" class="form-control" id="country" name="country" required>
+                  <div class="invalid-feedback">Please enter your country.</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Step 2: Course & Academic Information -->
+            <div id="step-2" class="form-step">
+              <h3 class="fw-bold grad-text mb-4">Academic & Professional Information</h3>
+              <div class="row g-3">
+                <div class="col-md-6 mb-3">
+                  <label for="highestQualification" class="form-label">Highest Qualification</label>
+                  <input type="text" class="form-control" id="highestQualification" name="highestQualification"
+                    required>
+                  <div class="invalid-feedback">Please enter your highest qualification.</div>
+                </div>
+                <div class="col-md-6 mb-3">
+                  <label for="institutionName" class="form-label">Name of Institution</label>
+                  <input type="text" class="form-control" id="institutionName" name="institutionName" required>
+                  <div class="invalid-feedback">Please enter the name of the institution.</div>
+                </div>
+                <div class="col-md-6 mb-3">
+                  <label for="graduationYear" class="form-label">Year of Graduation</label>
+                  <input type="text" class="form-control" id="graduationYear" name="graduationYear" required>
+                  <div class="invalid-feedback">Please enter your year of graduation.</div>
+                </div>
+                <div class="col-md-6 mb-3">
+                  <label for="currentOccupation" class="form-label">Current Occupation</label>
+                  <input type="text" class="form-control" id="currentOccupation" name="currentOccupation">
+                </div>
+                <div class="col-md-12 mb-3">
+                  <label for="workExperience" class="form-label">Previous Work Experience (optional)</label>
+                  <textarea class="form-control" id="workExperience" name="workExperience" rows="4"></textarea>
+                </div>
+              </div>
+            </div>
+
+            <!-- Step 3: Course Selection & Declaration -->
+            <div id="step-3" class="form-step">
+              <h3 class="fw-bold grad-text mb-4">Course & Declaration</h3>
+              <div class="row g-3">
+                <div class="col-md-12 mb-3">
+                  <label for="courseSelect" class="form-label">Select Course</label>
+                  <select class="form-select" id="courseSelect" name="course" required>
+                    <option selected disabled value="">Choose a course...</option>
+                  </select>
+                  <div class="invalid-feedback">Please select a course.</div>
+                </div>
+                <div class="col-md-12 mb-3">
+                  <label for="howHeard" class="form-label">How did you hear about us?</label>
+                  <select class="form-select" id="howHeard" name="howHeard" required>
+                    <option selected disabled value="">Choose an option...</option>
+                    <option value="friend">Friend/Family</option>
+                    <option value="social-media">Social Media</option>
+                    <option value="online-ad">Online Ad</option>
+                    <option value="search-engine">Search Engine</option>
+                    <option value="other">Other</option>
+                  </select>
+                  <div class="invalid-feedback">Please select an option.</div>
+                </div>
+                <div class="col-md-12 mb-3">
+                  <label for="motivation" class="form-label">Why are you interested in this course?</label>
+                  <textarea class="form-control" id="motivation" name="motivation" rows="4"></textarea>
+                </div>
+              </div>
+
+              <div class="form-check my-4">
+                <input class="form-check-input" type="checkbox" value="" id="declaration" required>
+                <label class="form-check-label" for="declaration">
+                  I hereby declare that the information provided is accurate and correct to the best of my knowledge.
+                </label>
+                <div class="invalid-feedback">You must agree to the declaration.</div>
+              </div>
+              <p class="text-muted small">
+                By submitting this form, you agree to our <a href="#" class="text-decoration-none">Privacy Policy</a>
+                and <a href="#" class="text-decoration-none">Terms of Service</a>.
+              </p>
+            </div>
+
+            <!-- Form Navigation Buttons -->
+            <div class="d-flex justify-content-between mt-4">
+              <button type="button" class="btn btn-outline-secondary px-4" id="prevBtn"
+                onclick="prevStep()">Previous</button>
+              <button type="button" class="btn btn-gold px-4" id="nextBtn" onclick="nextStep()">Next</button>
+              <button type="submit" class="btn btn-gold px-4" id="submitBtn">Submit Enrollment</button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <!-- Success Page -->
+      <div id="successPage" class="card success-page hero-gradient" style="max-width:800px; width:100%; background-color:#d8a8eba2;">
+        <div class="card-body">
+          <i class="bi bi-check-circle"></i>
+          <h2 class="fw-bold grad-text mt-3">Enrollment Successful!</h2>
+          <p class="lead text-muted mb-4">
+            Your enrollment form has been submitted. We will contact you soon with more details about your course.
+          </p>
+          <button type="button" class="btn btn-gold px-5 py-3" onclick="resetForm()">
+            <i class="bi bi-arrow-left me-2"></i>Return to Form
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="text-light py-5" style="background-color: #d8a8eba2;">
+  <div class="container">
+    <div class="row g-4">
+      
+      <!-- Column 1: Brand & Description -->
+      <div class="col-md-4">
+        <div class="d-flex align-items-center mb-2">
+          <div class="rounded-3 d-flex align-items-center justify-content-center me-2"
+               style="width:40px;height:40px;background:linear-gradient(135deg,#D6A4E6,#FADADD);color:#fff;font-weight:700">
+            WE
+          </div>
+          <h5 class="fw-bold mb-0">Women Empower Hub</h5>
+        </div>
+        <p class="small text-muted mt-2">
+          A community dedicated to helping women learn, promote, and grow their businesses.
+        </p>
+        <div class="social-icons mt-3">
+          <a href="#" class="text-white me-3"><i class="bi bi-facebook fs-4"></i></a>
+          <a href="#" class="text-white me-3"><i class="bi bi-instagram fs-4"></i></a>
+          <a href="#" class="text-white me-3"><i class="bi bi-linkedin fs-4"></i></a>
+        </div>
+      </div>
+      
+      <!-- Column 2: Quick Links -->
+      <div class="col-md-4">
+        <h6 class="fw-bold mb-3 text-gold">Quick Links</h6>
+        <ul class="list-unstyled small">
+          <li class="mb-2"><a href="learn.html" class="text-muted text-decoration-none">Learn</a></li>
+          <li class="mb-2"><a href="promote.html" class="text-muted text-decoration-none">Promote</a></li>
+          <li class="mb-2"><a href="mentors.html" class="text-muted text-decoration-none">Mentors</a></li>
+          <li class="mb-2"><a href="stories.html" class="text-muted text-decoration-none">Stories</a></li>
+        </ul>
+      </div>
+      
+      <!-- Column 3: Contact & Legal -->
+      <div class="col-md-4">
+        <h6 class="fw-bold mb-3 text-gold">Get in Touch</h6>
+        <ul class="list-unstyled small">
+          <li class="text-muted mb-2">Email: <a href="mailto:info@womenempower.com" class="text-muted text-decoration-none">info@womenempower.com</a></li>
+          <li class="text-muted mb-2">Phone: +92 123 4567890</li>
+          <li class="text-muted">Location: Lahore, Pakistan</li>
+        </ul>
+        <div class="small text-muted mt-4 border-top pt-3">
+          &copy; 2025 Women Empower. All Rights Reserved.<br>
+          <a href="#" class="text-muted text-decoration-none">Privacy Policy</a> | <a href="#" class="text-muted text-decoration-none">Terms of Service</a>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+</footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>AOS.init({ duration: 700, once: true });</script>
+</body>
+
+</html>
